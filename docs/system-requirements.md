@@ -1,32 +1,30 @@
 # System Requirements
 
-## Functional requirements
+## Functional Requirements
 
 Sistem:
 
-1. Transaction məlumatlarını qəbul etməlidir.
-2. Cihaz məlumatlarını saxlamalıdır.
-3. Login fəaliyyətlərini saxlamalıdır.
-4. Risk qaydalarını saxlamalıdır.
-5. Transaction məlumatlarını risk qaydaları ilə yoxlamalıdır.
-6. Risk score müəyyən etməlidir.
-7. Şübhəli fəaliyyət olduqda alert yaratmalıdır.
-8. Alert status-un dəyişdirilməsinə imkan verməlidir.
-9. Fraud case yaradılmasına imkan verməlidir.
-10. Analyst qeydlərini saxlamalıdır.
+1. Transaction və login event-lərini qəbul etməlidir.
+2. Cihaz, IP və location məlumatlarını saxlamalıdır.
+3. Aktiv risk qaydalarını incoming event-lərə tətbiq etməlidir.
+4. Müəyyən edilən risklər əsasında risk score hesablamalıdır.
+5. Yüksək riskli fəaliyyət üçün alert yaratmalıdır.
+6. Alert-in statusunun dəyişdirilməsinə imkan verməlidir.
+7. Alert əsasında fraud case yaradılmasını dəstəkləməlidir.
+8. Fraud analyst qeydlərini saxlamalıdır.
+9. Müştərinin əvvəlki transaction və login fəaliyyətlərini göstərməlidir.
+10. Eyni cihazla əlaqəli fərqli hesabları tapmağa imkan verməlidir.
 11. Əsas dəyişiklikləri audit log-da saxlamalıdır.
-12. Müştərinin əvvəlki fəaliyyətlərini göstərməlidir.
-13. Eyni cihazdan istifadə edən hesabları tapmalıdır.
-14. Fraud və risk hesabatları hazırlamalıdır.
-15. Eyni event-in iki dəfə əlavə olunmasının qarşısını almalıdır.
+12. Təkrar göndərilən event-in duplicate məlumat yaratmasının qarşısını almalıdır.
+13. Fraud və risk məlumatları üzrə hesabatlar hazırlamalıdır.
 
-## Non-functional requirements
+## Non-Functional Requirements
 
-1. Sistem böyük həcmdə transaction məlumatı ilə işləyə bilməlidir.
-2. Tez-tez istifadə olunan sorğular sürətli işləməlidir.
-3. Database yalnız icazəsi olan istifadəçilər üçün açıq olmalıdır.
-4. Vacib məlumatlar validation qaydaları ilə yoxlanmalıdır.
-5. Edilən dəyişikliklər izlənilə bilməlidir.
-6. Sistem gələcəkdə genişləndirilə bilməlidir.
-7. Backup və məlumatların bərpası planı olmalıdır.
-8. Password və connection məlumatları GitHub-da paylaşılmamalıdır.
+1. Sistem artan event həcminə uyğun genişlənə bilməlidir.
+2. Tez-tez istifadə olunan sorğular uyğun index-lərlə optimallaşdırılmalıdır.
+3. Database yalnız icazəsi olan istifadəçilər üçün əlçatan olmalıdır.
+4. Vacib field-lər schema validation ilə yoxlanmalıdır.
+5. Əsas əməliyyatlar və dəyişikliklər izlənilə bilməlidir.
+6. Backup və məlumatların bərpası üçün plan hazırlanmalıdır.
+7. Password və connection məlumatları source code və GitHub repository-də saxlanılmamalıdır.
+8. Database və application xətaları log-larda qeyd olunmalıdır.

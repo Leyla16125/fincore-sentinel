@@ -1,40 +1,38 @@
 # Problem Statement
 
-Bank və fintech sistemlərində hər gün çoxlu sayda transaction və login fəaliyyəti baş verir.
+Bank və fintech sistemlərində hər gün çoxlu transaction və login fəaliyyəti baş verir. Bu fəaliyyətlərin hamısını əməkdaşların əl ilə yoxlaması mümkün deyil.
 
-Bu fəaliyyətlərin bəziləri şübhəli ola bilər. Bütün əməliyyatları əl ilə yoxlamaq mümkün olmadığı üçün avtomatik risk monitorinq sisteminə ehtiyac var.
+Bəzi əməliyyatlar normal görünsə də, cihaz, IP ünvanı, location və istifadəçi davranışı nəzərə alındıqda şübhəli ola bilər.
 
-Layihə aşağıdakı şübhəli halları müəyyən etməyə çalışacaq:
+Məsələn:
 
-* Yeni cihazdan böyük məbləğli əməliyyat
-* Qısa müddətdə çoxlu transaction
-* Müxtəlif ölkələrdən qısa vaxt ərzində login
-* Çoxlu uğursuz ödəniş cəhdi
-* Eyni cihazdan fərqli hesabların istifadəsi
-* Qeyri-adi saatda böyük əməliyyat
-* Müştərinin əvvəlki davranışından fərqli fəaliyyət
+- Yeni cihazdan böyük məbləğli əməliyyat
+- Qısa müddətdə çoxlu transaction
+- Fərqli ölkələrdən ardıcıl login
+- Çoxlu uğursuz ödəniş cəhdi
+- Eyni cihazdan bir neçə hesabın istifadəsi
+- Müştərinin əvvəlki davranışından fərqli fəaliyyət
 
-Sistem transaction, cihaz, IP, location və login məlumatlarını toplayacaq.
+FinCore Sentinel bu məlumatları toplayaraq riskli fəaliyyəti müəyyən etməyə kömək edəcək.
 
-Şübhəli fəaliyyət müəyyən ediləndə fraud analyst üçün alert yaradılacaq. Analyst məlumatları yoxlayacaq və fəaliyyətin həqiqi fraud olub-olmadığına qərar verəcək.
+Şübhəli hal aşkar edildikdə alert yaradılacaq. Fraud analyst həmin alert-i araşdıracaq və fəaliyyətin fraud olub-olmadığına qərar verəcək.
 
-Sistemdə edilən əsas dəyişikliklər audit log-da saxlanılacaq. Bununla hansı istifadəçinin hansı dəyişikliyi etdiyi məlum olacaq.
+Sistemdə edilən əsas dəyişikliklər audit log-da saxlanılacaq. Bununla alert və fraud case-lər üzərində kimin, nə vaxt və hansı dəyişiklik etdiyi izlənilə biləcək.
 
 ## İstifadəçilər
 
 ### Fraud analyst
 
-Şübhəli alert-ləri araşdırır və nəticə haqqında qərar verir.
+Alert-ləri araşdırır, qeyd əlavə edir və nəticə haqqında qərar verir.
 
 ### Risk manager
 
-Risk qaydalarını yaradır və dəyişir.
+Risk qaydalarını və onların limitlərini idarə edir.
 
 ### Auditor
 
-Sistemdə edilən dəyişiklikləri və istifadəçi fəaliyyətlərini yoxlayır.
+Sistemdə aparılan dəyişiklikləri və istifadəçi fəaliyyətlərini yoxlayır.
 
 ### System administrator
 
-Database təhlükəsizliyi, istifadəçi icazələri və backup ilə məşğul olur.
-
+Database təhlükəsizliyi, istifadəçi icazələri və backup proseslərini idarə edir.

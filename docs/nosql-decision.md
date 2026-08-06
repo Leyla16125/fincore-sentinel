@@ -1,57 +1,43 @@
 # NoSQL Decision
 
-Bu layihədə MongoDB istifadə etməyə qərar verdim.
+FinCore Sentinel layihəsində əsas database olaraq MongoDB istifadə ediləcək.
 
-## MongoDB-ni niyə seçdim?
+## Seçim səbəbi
 
-Transaction növlərinin məlumatları bir-birindən fərqli ola bilər.
+Sistem transaction, login, cihaz və risk məlumatları ilə işləyəcək. Bu məlumatların strukturu həmişə eyni olmaya bilər.
 
-Məsələn, kart ödənişində merchant məlumatı, bank transferində isə alıcının hesab məlumatı ola bilər.
+Məsələn, kart ödənişində merchant məlumatı, bank transferində isə alıcı hesabı ilə bağlı məlumatlar ola bilər. Cihaz və location məlumatları da bir neçə field-dən ibarət olduğu üçün nested document formasında saxlanıla bilər.
 
-Cihaz və location məlumatları da nested document formasında saxlanıla bilər.
+Bir transaction eyni anda bir neçə risk siqnalı yarada bilər. Bu məlumatları array formasında saxlamaq MongoDB document modelinə uyğundur.
 
-Bir transaction eyni anda bir neçə risk siqnalına sahib ola bilər:
+Layihədə MongoDB-nin aşağıdakı imkanlarından istifadə olunacaq:
 
-* Yeni cihaz
-* Yeni ölkə
-* Böyük məbləğ
-* Qeyri-adi saat
-* Şübhəli IP ünvanı
+- Schema validation
+- Index-lər
+- Aggregation pipeline
+- TTL index
+- Change stream
+- Transaction
+- Replication və sharding anlayışları
 
-Bu məlumatları MongoDB-də document və array formasında saxlamaq daha rahatdır.
+## MongoDB-də saxlanacaq məlumatlar
 
-MongoDB-ni həmçinin aşağıdakı mövzuları öyrənmək üçün istifadə edəcəyəm:
+MongoDB əsasən aşağıdakı məlumatları saxlayacaq:
 
-* Document və collection
-* Schema validation
-* Embedding və referencing
-* Index
-* Aggregation
-* Transaction
-* Change stream
-* Replication
-* Sharding
+- Transaction event-ləri
+- Login və cihaz session-ları
+- Risk qaydaları
+- Risk siqnalları
+- Fraud alert-ləri
+- Fraud case-lər
+- Audit log-ları
 
-## MongoDB-də hansı məlumatlar saxlanacaq?
+## MongoDB-nin istifadə olunmayacağı hissələr
 
-* Transaction event-ləri
-* Device session-ları
-* Login məlumatları
-* IP və location məlumatları
-* Risk qaydaları
-* Risk siqnalları
-* Fraud alert-ləri
-* Fraud case-lər
-* Audit log-ları
+Bank hesablarının əsas balansı və maliyyə ledger məlumatları bu sistemin məsuliyyətinə daxil deyil.
 
-## MongoDB-də hansı məlumatları saxlamazdım?
-
-Bank hesablarının əsas balansını və rəsmi maliyyə ledger məlumatlarını yalnız MongoDB-də saxlamazdım.
-
-Bu məlumatlar üçün PostgreSQL daha uyğun ola bilər. Çünki maliyyə məlumatlarında əlaqələr və məlumat bütövlüyü daha sərt şəkildə qorunmalıdır.
+Belə məlumatlar daha sərt əlaqə və consistency tələb etdiyi üçün PostgreSQL kimi relational database-də saxlanıla bilər.
 
 ## Nəticə
 
-PostgreSQL əsas maliyyə məlumatlarını idarə edə bilər.
-
-MongoDB isə transaction event-ləri, cihaz fəaliyyəti, risk analizi və fraud alert-ləri üçün istifadə ediləcək.
+MongoDB fraud monitorinqi və event məlumatları üçün istifadə ediləcək. PostgreSQL isə əsas maliyyə məlumatları üçün daha uyğun seçim olaraq qalacaq.

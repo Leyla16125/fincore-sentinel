@@ -1,36 +1,49 @@
-# README.md
-
 # FinCore Sentinel
 
-FinCore Sentinel bank əməliyyatlarında şübhəli fəaliyyətləri müəyyən etmək üçün hazırladığım NoSQL layihəsidir.
+FinCore Sentinel is a fraud-monitoring project designed to evaluate transaction and activity events, detect suspicious behavior, calculate risk, and support fraud alerts.
 
-Sistem transaction, cihaz, IP ünvanı, location və login məlumatlarını saxlayacaq. Bu məlumatlara əsasən riskli fəaliyyətlər müəyyən ediləcək və fraud alert yaradılacaq.
+The system focuses on event and risk data rather than core banking balances or ledger records. MongoDB is used for flexible event documents containing transaction, device, location, session, and risk information.
 
-Bu layihədə əsas məqsədim MongoDB-ni sıfırdan öyrənmək və öyrəndiyim mövzuları real layihə üzərində tətbiq etməkdir.
+## Core capabilities
 
-## Layihənin əsas istifadəçiləri
+- Store transaction and customer risk data
+- Track device and location context for events
+- Apply fraud-risk rules to incoming activity
+- Calculate risk signals and scores
+- Create and manage fraud alerts
+- Prevent duplicate event identifiers
+- Support auditability and fraud-analysis reporting
 
-* Fraud analyst
-* Risk manager
-* Auditor
-* System administrator
+## Technology stack
 
-## Niyə MongoDB?
+- MongoDB
+- Python
+- PyMongo
+- Git / GitHub
 
-MongoDB-ni seçməyimin əsas səbəbi transaction, cihaz və risk məlumatlarının fərqli və iç-içə struktura sahib ola bilməsidir.
+The Python application layer is added after the MongoDB data model, validation rules, and database setup are finalized.
 
-MongoDB vasitəsilə document, array, nested data, aggregation, index və real-time məlumat izləmə mövzularını tətbiq edəcəyəm.
+## Repository structure
 
-## İstifadə edəcəyim texnologiyalar
+```text
+fincore-sentinel/
+├── docs/
+│   ├── data-dictionary.md
+│   ├── nosql-decision.md
+│   ├── problem-statement.md
+│   └── system-requirements.md
+├── scripts/
+│   ├── seed/
+│   │   ├── seed-customers.js
+│   │   └── seed-transactions.js
+│   └── setup/
+│       └── create-indexes.js
+├── .gitignore
+└── README.md
+```
 
-* MongoDB
-* Python
-* PyMongo
-* Git
-* GitHub
+## Database setup
 
-## Hazırkı mərhələ
+The `scripts/seed` directory contains synthetic local-development data. The `scripts/setup` directory contains database configuration that is required by the project, such as unique and query-supporting indexes.
 
-Day 1 — Layihənin məqsədi və MongoDB seçim səbəbləri müəyyən edildi.
-
-
+Practice-only MongoDB queries are intentionally not stored in the repository. Queries used by the final application will live in the Python application layer or in dedicated project modules when they are introduced.
